@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:background="@color/colorPlayer">
+
+    <ImageView
+        android:id="@+id/rc_podcast_image"
+        android:layout_width="@dimen/notif_height"
+        android:layout_height="@dimen/notif_height"
+        android:clickable="true"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:id="@+id/notif_podcast_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_toRightOf="@id/rc_podcast_image"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        tools:text="Podcast Radio-T 512" />
+
+    <ImageView
+        android:id="@+id/rc_btn_stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:clickable="true"
+        android:padding="6dp"
+        android:src="@drawable/ic_close_black_24dp"
+        android:tint="@android:color/white" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="center"
+        android:layout_toRightOf="@id/rc_podcast_image"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/rc_btn_prev"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:padding="6dp"
+            android:src="@drawable/ic_skip_previous_white_24dp"/>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/rc_btn_start_pause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:padding="6dp"
+            android:src="@drawable/ic_play_arrow_black_24dp"
+            android:tint="@android:color/white"/>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+
+        <ImageView
+            android:id="@+id/rc_btn_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:padding="6dp"
+            android:src="@drawable/ic_skip_next_white_24dp"/>
+    </LinearLayout>
+
+
+</RelativeLayout>

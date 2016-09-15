@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Podcasts Radio-T</string>
+    <string name="play">Play</string>
+    <string name="pause">Pause</string>
+    <string name="download">Download</string>
+    <string name="summary">Summary</string>
+    <string name="widget_no_playback">Tap to select podcast</string>
+    <string name="msg_podcast_already_cached">Podcast is already cached</string>
+    <string name="in_cache">In cache</string>
+    <string name="nothing_to_show">Nothing to show…</string>
+    <string name="no_internet">Check your internet connection</string>
+    <string name="cd_player_unavailable">Player unavailable, no podcasts found</string>
+</resources>
