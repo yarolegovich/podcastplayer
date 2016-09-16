@@ -172,6 +172,8 @@ public class BackgroundAudioService extends Service {
         notification =  new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.ic_album_white_24dp)
                 .setTicker(currentPodcast.getTitle())
+                .setContentTitle(currentPodcast.getTitle())
+                .setContentText(currentPodcast.getAuthors())
                 .setCustomBigContentView(notificationView)
                 .setAutoCancel(false)
                 .build();
