@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import com.devchallenge.podcastplayer.R;
 
 /**
- * Created by yarolegovich on 15.09.2016.
+ * Created by MrDeveloper on 15.09.2016.
  */
 public class EmptyPlayerFragment extends Fragment {
 

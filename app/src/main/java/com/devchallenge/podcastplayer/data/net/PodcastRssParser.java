@@ -21,7 +21,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Created by yarolegovich on 13.09.2016.
+ * Created by MrDeveloper on 13.09.2016.
  */
 public class PodcastRssParser {
 
@@ -63,7 +63,12 @@ public class PodcastRssParser {
                     continue;
                 }
                 if (parser.getName().equals(PODCAST)) {
-                    result.add(extractPodcast(parser));
+                    Podcast podcast = extractPodcast(parser);
+                    //I don't know how often this happen, but one item in comes only with title and
+                    //description. Podcast 498.
+                    if (podcast.getAudio() != null) {
+                        result.add(podcast);
+                    }
                 }
             }
             return result;

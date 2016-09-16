@@ -7,7 +7,7 @@ import rx.Observable;
 import rx.subjects.PublishSubject;
 
 /**
- * Created by yarolegovich on 13.09.2016.
+ * Created by MrDeveloper on 13.09.2016.
  */
 class PlayerStateImpl implements PlayerState, PlaybackState {
 

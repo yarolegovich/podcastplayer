@@ -3,8 +3,8 @@
     package="com.devchallenge.podcastplayer">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".App"
@@ -13,7 +13,9 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,7 +25,9 @@
 
         <activity
             android:name=".PlayerActivity"
-            android:parentActivityName=".MainActivity" />
+            android:launchMode="singleTask"/>
+
+        <activity android:name=".CachedPodcastsActivity" />
 
         <service android:name=".audio.BackgroundAudioService" />
 
@@ -36,12 +40,19 @@
             </intent-filter>
         </service>
 
-        <receiver android:name=".widget.WidgetManager" >
+        <receiver android:name=".widget.WidgetManager">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
-            <meta-data android:name="android.appwidget.provider"
+            <meta-data
+                android:name="android.appwidget.provider"
                 android:resource="@xml/widget_config" />
+        </receiver>
+
+        <receiver android:name=".data.CacheUpdatesReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
+            </intent-filter>
         </receiver>
 
     </application>

@@ -20,15 +20,32 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
+        android:layout_toEndOf="@id/rc_podcast_image"
         android:layout_toRightOf="@id/rc_podcast_image"
         android:textColor="@android:color/white"
         android:textSize="16sp"
+        tools:ignore="RelativeOverlap"
         tools:text="Podcast Radio-T 512" />
+
+    <TextView
+        android:id="@+id/notif_podcast_time"
+        android:textColor="@android:color/white"
+        android:layout_toRightOf="@id/rc_podcast_image"
+        android:layout_toEndOf="@id/rc_podcast_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="2dp"
+        android:layout_below="@id/notif_podcast_title"
+        tools:text="12:00/1:02:21"/>
 
     <ImageView
         android:id="@+id/rc_btn_stop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:clickable="true"
         android:padding="6dp"
@@ -39,8 +56,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_gravity="center"
+        android:layout_toEndOf="@id/rc_podcast_image"
         android:layout_toRightOf="@id/rc_podcast_image"
         android:orientation="horizontal">
 
@@ -50,12 +69,13 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:padding="6dp"
-            android:src="@drawable/ic_skip_previous_white_24dp"/>
+            android:src="@drawable/ic_skip_previous_white_24dp" />
 
         <FrameLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            tools:ignore="UselessLeaf" />
 
         <ImageView
             android:id="@+id/rc_btn_start_pause"
@@ -64,12 +84,13 @@
             android:clickable="true"
             android:padding="6dp"
             android:src="@drawable/ic_play_arrow_black_24dp"
-            android:tint="@android:color/white"/>
+            android:tint="@android:color/white" />
 
         <FrameLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            tools:ignore="UselessLeaf" />
 
 
         <ImageView
@@ -78,7 +99,7 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:padding="6dp"
-            android:src="@drawable/ic_skip_next_white_24dp"/>
+            android:src="@drawable/ic_skip_next_white_24dp" />
     </LinearLayout>
 
 

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,11 +27,12 @@ import com.devchallenge.podcastplayer.data.Podcasts;
 import com.devchallenge.podcastplayer.data.model.Podcast;
 import com.devchallenge.podcastplayer.util.NavigationManager;
 import com.devchallenge.podcastplayer.util.Permissions;
+import com.devchallenge.podcastplayer.util.Utils;
 
 import rx.Subscription;
 
 /**
- * Created by yarolegovich on 14.09.2016.
+ * Created by MrDeveloper on 14.09.2016.
  */
 public class PlayerFragment extends Fragment implements View.OnClickListener,
         SeekBar.OnSeekBarChangeListener {
@@ -57,6 +59,7 @@ public class PlayerFragment extends Fragment implements View.OnClickListener,
     private Subscription playbackProgressSubscription;
 
     private ImageView playButton;
+    private TextView playbackTime;
     private SeekBar seekBar;
 
     private ServiceConnection connection;
@@ -73,10 +76,9 @@ public class PlayerFragment extends Fragment implements View.OnClickListener,
         podcast = (Podcast) getArguments().getSerializable(ARG_PODCAST);
         podcasts = Podcasts.getInstance();
 
-        Intent intent = new Intent(getContext(), BackgroundAudioService.class);
-        getActivity().startService(intent);
+        Intent intent = new Intent(getActivity(), BackgroundAudioService.class);
         connection = new AudioServiceConnection();
-        getActivity().bindService(intent, connection, 0);
+        getActivity().bindService(intent, connection, Context.BIND_AUTO_CREATE);
     }
 
     @Nullable
@@ -99,6 +101,8 @@ public class PlayerFragment extends Fragment implements View.OnClickListener,
         TextView description = (TextView) view.findViewById(R.id.player_podcast_description);
         description.setText(podcast.getDescription());
 
+        playbackTime = (TextView) view.findViewById(R.id.player_playback_time);
+
         seekBar = (SeekBar) view.findViewById(R.id.player_seekbar);
         seekBar.setOnSeekBarChangeListener(this);
 
@@ -115,7 +119,7 @@ public class PlayerFragment extends Fragment implements View.OnClickListener,
                 .subscribe(playerState -> {
                     Podcast currentPodcast = playerState.getCurrentPodcast();
                     boolean isCurrentPodcastPageOpened = podcast.equals(currentPodcast);
-                    if (isCurrentPodcastPageOpened) {
+                    if (isCurrentPodcastPageOpened || currentPodcast == null) {
                         showPlayerState(playerState);
                     }
                     seekBar.setEnabled(isCurrentPodcastPageOpened);
@@ -186,7 +190,7 @@ public class PlayerFragment extends Fragment implements View.OnClickListener,
     }
 
     private void showPlayerState(PlayerState state) {
-        if (!state.getCurrentPodcast().equals(podcast) || state.isPaused()) {
+        if (!podcast.equals(state.getCurrentPodcast()) || state.isPaused()) {
             playButton.setImageResource(R.drawable.ic_play_arrow_white_48dp);
         } else {
             playButton.setImageResource(R.drawable.ic_pause_white_48dp);
@@ -196,8 +200,11 @@ public class PlayerFragment extends Fragment implements View.OnClickListener,
 
     private void showPlaybackProgress(PlaybackState state) {
         if (podcast.equals(state.getCurrentPodcast())) {
+            playbackTime.setText(Utils.toTime(state));
             seekBar.setMax(state.getPlaybackDuration());
             seekBar.setProgress(state.getPlaybackPosition());
+        } else {
+            playbackTime.setText(Utils.toTime(PlaybackState.NO_PLAYBACK));
         }
     }
 
@@ -224,6 +231,8 @@ public class PlayerFragment extends Fragment implements View.OnClickListener,
         public void onServiceConnected(ComponentName name, IBinder absBinder) {
             BackgroundAudioService.LocalBinder binder = (BackgroundAudioService.LocalBinder) absBinder;
             audioService = binder.getService();
+            //We want service to live longer than this connection
+            getActivity().startService(new Intent(getActivity(), BackgroundAudioService.class));
         }
 
         @Override

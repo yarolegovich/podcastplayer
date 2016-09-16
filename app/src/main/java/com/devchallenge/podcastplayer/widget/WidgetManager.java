@@ -18,7 +18,7 @@ import com.devchallenge.podcastplayer.data.model.Podcast;
 import com.devchallenge.podcastplayer.view.RemoteControllerView;
 
 /**
- * Created by yarolegovich on 14.09.2016.
+ * Created by MrDeveloper on 14.09.2016.
  */
 public class WidgetManager extends AppWidgetProvider {
 

@@ -13,7 +13,7 @@ import com.devchallenge.podcastplayer.data.model.Podcast;
 import com.devchallenge.podcastplayer.util.NavigationManager;
 
 /**
- * Created by yarolegovich on 13.09.2016.
+ * Created by MrDeveloper on 13.09.2016.
  */
 public class PlayerActivity extends AppCompatActivity implements NavigationManager {
 

@@ -1,11 +1,15 @@
 package com.devchallenge.podcastplayer;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.devchallenge.podcastplayer.data.Podcasts;
@@ -19,6 +23,7 @@ import com.devchallenge.podcastplayer.util.Utils;
 import java.util.List;
 
 import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
 
 public class MainActivity extends AppCompatActivity implements NavigationManager  {
 
@@ -39,24 +44,27 @@ public class MainActivity extends AppCompatActivity implements NavigationManager
             fm.beginTransaction().replace(R.id.list_container, fragment).commit();
         }
 
-        if (Utils.isTablet(this)) {
+        if (isTwoPanelLayout()) {
             showNoPodcastFragment();
-            subscription = Podcasts.getInstance().
-                    getPodcasts()
-                    .subscribe(this::showPodcastPlayerFragment,
+            subscription = Podcasts.getInstance().getPodcasts()
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(
+                            this::showPodcastPlayerFragment,
                             this::showNoPodcastFragment);
         }
     }
 
     @Override
     public void openPodcastInPlayer(Podcast podcast) {
-        if (Utils.isTablet(this)) {
+        if (isTwoPanelLayout()) {
             Fragment fragment = PlayerFragment.createFor(podcast);
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.player_container, fragment)
                     .commit();
         } else {
-            startActivity(PlayerActivity.callingIntent(this, podcast));
+            if (podcast != null) {
+                startActivity(PlayerActivity.callingIntent(this, podcast));
+            }
         }
     }
 
@@ -72,6 +80,10 @@ public class MainActivity extends AppCompatActivity implements NavigationManager
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.player_container, new EmptyPlayerFragment())
                 .commit();
+    }
+
+    private boolean isTwoPanelLayout() {
+        return Utils.isTablet(this) && Utils.isLandscape();
     }
 
     @Override

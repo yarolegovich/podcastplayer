@@ -15,13 +15,14 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.NotificationTarget;
 import com.devchallenge.podcastplayer.R;
 import com.devchallenge.podcastplayer.data.model.Podcast;
+import com.devchallenge.podcastplayer.util.Utils;
 import com.devchallenge.podcastplayer.view.RemoteControllerView;
 import com.devchallenge.podcastplayer.widget.WidgetManager;
 
 import rx.Subscription;
 
 /**
- * Created by yarolegovich on 13.09.2016.
+ * Created by MrDeveloper on 13.09.2016.
  */
 public class BackgroundAudioService extends Service {
 
@@ -44,6 +45,10 @@ public class BackgroundAudioService extends Service {
     private Subscription playerStateChanges;
     private Subscription playbackProgressChanges;
 
+    private NotificationManager nm;
+    private RemoteViews notificationView;
+    private Notification notification;
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -54,6 +59,7 @@ public class BackgroundAudioService extends Service {
     public void onCreate() {
         super.onCreate();
         player = Player.getInstance();
+        nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         playerStateChanges = player.onPlayerUpdates().subscribe(this::updateRemoteControllers);
         playbackProgressChanges = player.onPlaybackProgress().subscribe(this::updateProgress);
     }
@@ -102,6 +108,8 @@ public class BackgroundAudioService extends Service {
 
     public void stopPlayback() {
         player.stop();
+        closeNotification();
+        stopSelf();
     }
 
     public void pausePlayback() {
@@ -131,11 +139,14 @@ public class BackgroundAudioService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        stopForeground(true);
         playerStateChanges.unsubscribe();
         playbackProgressChanges.unsubscribe();
-        //Flag above doesn't always work
-        ((NotificationManager) getSystemService(NOTIFICATION_SERVICE)).cancel(NOTIF_ID);
+        closeNotification();
+    }
+
+    private void closeNotification() {
+        stopForeground(true);
+        nm.cancel(NOTIF_ID);
     }
 
     private void updateRemoteControllers(PlayerState playerState) {
@@ -148,23 +159,27 @@ public class BackgroundAudioService extends Service {
     }
 
     private void updateProgress(PlaybackState playbackState) {
-
+        if (notificationView != null) {
+            notificationView.setTextViewText(R.id.notif_podcast_time, Utils.toTime(playbackState));
+            nm.notify(NOTIF_ID, notification);
+        }
     }
 
+    @SuppressWarnings("ConstantConditions")
     private Notification createNotificationController(PlayerState state) {
         Podcast currentPodcast = state.getCurrentPodcast();
-        RemoteViews remoteViews = RemoteControllerView.create(this);
-        Notification notif =  new NotificationCompat.Builder(this)
+        notificationView = RemoteControllerView.create(this);
+        notification =  new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.ic_album_white_24dp)
                 .setTicker(currentPodcast.getTitle())
-                .setCustomBigContentView(remoteViews)
+                .setCustomBigContentView(notificationView)
                 .setAutoCancel(false)
                 .build();
-        NotificationTarget target = new NotificationTarget(this, remoteViews,
+        NotificationTarget target = new NotificationTarget(this, notificationView,
                 R.id.rc_podcast_image,
-                notif, NOTIF_ID);
+                notification, NOTIF_ID);
         Glide.with(this).load(currentPodcast.getImageUrl()).asBitmap().into(target);
-        return notif;
+        return notification;
     }
 
     public class LocalBinder extends Binder {

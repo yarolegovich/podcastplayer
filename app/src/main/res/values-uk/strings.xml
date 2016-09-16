@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Подкасти Радіо-Т</string>
+    <string name="play">Грати</string>
+    <string name="pause">Пауза</string>
+    <string name="download">Завантажити</string>
+    <string name="summary">Опис</string>
+    <string name="widget_no_playback">Клацніть щоб обрати подкаст</string>
+    <string name="in_cache">Збережено</string>
+    <string name="cache">Зберегти</string>
+    <string name="cancel">Відміна</string>
+    <string name="delete">Видалити</string>
+
+    <string name="nothing_to_show">Немає даних…</string>
+    <string name="cache_is_empty">Немає збережених…</string>
+
+    <!-- msg_ for message shown to user -->
+    <string name="msg_podcast_already_cached">Подкаст вже збережен</string>
+    <string name="msg_no_internet">Перевірте ваше Інтернет з\'єднання</string>
+    <string name="msg_caching_in_progress">Триває збереження. Ви можете відмінити його через Download Manager…</string>
+
+    <!-- d_ fo dialog -->
+    <string name="d_title_remove_from_cache">Підтвердіть дію</string>
+    <string name="d_msg_remove_from_cache">Це назавжди видалть файл, ви впевнені?</string>
+
+    <!-- cd_ for contentDescription -->
+    <string name="cd_player_unavailable">Плеєр недоступний</string>
+    <string name="cd_delete_cached_podcast">Видалити збережений подкаст</string>
+    <string name="cd_toggle_playback_state">Змінити стан програвання</string>
+    <string name="cd_switch_to_the_previous">До попереднього подкасту</string>
+    <string name="cd_switch_to_the_next">До наступного подкасту</string>
+    <string name="cd_download_podcast">Зберегти цей подкаст</string>
+    <string name="cd_stop_playback">Зупинити програвання</string>
+</resources>

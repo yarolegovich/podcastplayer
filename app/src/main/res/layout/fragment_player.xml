@@ -14,7 +14,8 @@
             android:id="@+id/player_cover_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            tools:ignore="ContentDescription" />
 
         <View
             android:layout_width="match_parent"
@@ -28,6 +29,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="12dp"
             android:layout_marginLeft="12dp"
+            android:layout_marginStart="12dp"
             android:textColor="@android:color/white"
             android:textSize="12sp"
             tools:text="podcast@radio-t.com (Umputun, Bobuk, Gray, Ksenks)" />
@@ -39,6 +41,7 @@
             android:layout_above="@id/player_podcast_authors"
             android:layout_marginBottom="4dp"
             android:layout_marginLeft="12dp"
+            android:layout_marginStart="12dp"
             android:textColor="@android:color/white"
             android:textSize="16sp"
             tools:text="RadioT Podcast 512" />
@@ -56,6 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"
+            android:layout_marginStart="12dp"
             android:layout_marginTop="12dp"
             android:textColor="@android:color/white"
             tools:text="7:42/1:04:21" />
@@ -74,6 +78,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
+            android:background="?android:selectableItemBackground"
+            android:contentDescription="@string/cd_toggle_playback_state"
             android:src="@drawable/ic_play_arrow_white_48dp"
             android:tint="@android:color/white" />
 
@@ -83,8 +89,12 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="12dp"
+            android:layout_marginEnd="12dp"
             android:layout_marginRight="12dp"
             android:layout_toLeftOf="@id/player_btn_play_pause"
+            android:layout_toStartOf="@id/player_btn_play_pause"
+            android:background="?android:selectableItemBackground"
+            android:contentDescription="@string/cd_switch_to_the_previous"
             android:src="@drawable/ic_skip_previous_black_24dp"
             android:tint="@android:color/white" />
 
@@ -95,7 +105,11 @@
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="12dp"
             android:layout_marginLeft="12dp"
-            android:layout_toRightOf="@+id/player_btn_play_pause"
+            android:layout_marginStart="12dp"
+            android:layout_toEndOf="@id/player_btn_play_pause"
+            android:layout_toRightOf="@id/player_btn_play_pause"
+            android:background="?android:selectableItemBackground"
+            android:contentDescription="@string/cd_switch_to_the_next"
             android:src="@drawable/ic_skip_next_black_24dp"
             android:tint="@android:color/white" />
 
@@ -106,6 +120,9 @@
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="12dp"
             android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:background="?android:selectableItemBackground"
+            android:contentDescription="@string/cd_stop_playback"
             android:src="@drawable/ic_stop_white_24dp" />
 
         <ImageView
@@ -113,9 +130,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_marginBottom="12dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
+            android:background="?android:selectableItemBackground"
             android:src="@drawable/ic_file_download_white_24dp" />
 
     </RelativeLayout>

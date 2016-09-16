@@ -4,30 +4,26 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/podcast_list"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/podcast_list_swipe_refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
 
-    <LinearLayout
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/podcast_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <TextView
         android:id="@+id/podcast_list_empty"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="4dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:drawablePadding="2dp"
+        android:drawableTop="@drawable/ic_emoticon_sad_grey600_48dp"
+        android:text="@string/nothing_to_show" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_emoticon_sad_grey600_48dp"/>
-
-        <TextView
-            android:layout_marginTop="4dp"
-            android:text="@string/nothing_to_show"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
 
 </FrameLayout>

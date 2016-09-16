@@ -6,4 +6,9 @@
 
     <color name="colorPlayer">#616161</color>
 
+    <color name="materialPrimaryRed">#F44336</color>
+    <color name="materialPrimaryAmber">#FFC107</color>
+    <color name="materialPrimaryGreen">#4CAF50</color>
+    <color name="materialPrimaryBlue">#2196F3</color>
+
 </resources>

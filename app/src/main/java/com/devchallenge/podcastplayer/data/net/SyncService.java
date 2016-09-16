@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by yarolegovich on 14.09.2016.
+ * Created by MrDeveloper on 14.09.2016.
  */
 public class SyncService extends GcmTaskService {
 
@@ -29,7 +29,7 @@ public class SyncService extends GcmTaskService {
                 List<Podcast> podcasts = new NetworkManager().getRss()
                         .toBlocking()
                         .first();
-                cache.cachePodcastList(podcasts);
+                cache.savePodcastList(podcasts);
                 return GcmNetworkManager.RESULT_SUCCESS;
             } catch (Exception e) {
                 Log.e(LOG_TAG, e.getMessage(), e);

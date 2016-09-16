@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by yarolegovich on 13.09.2016.
+ * Created by MrDeveloper on 13.09.2016.
  */
 public class Podcast implements Serializable {
 
@@ -14,6 +14,12 @@ public class Podcast implements Serializable {
     private String imageUrl;
     private String authors;
     private Audio audio;
+
+    public Podcast() { }
+
+    public Podcast(String title) {
+        this.title = title;
+    }
 
     public String getTitle() {
         return title;

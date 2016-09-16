@@ -15,7 +15,7 @@ import java.util.List;
 import rx.functions.Action0;
 
 /**
- * Created by yarolegovich on 14.09.2016.
+ * Created by MrDeveloper on 14.09.2016.
  */
 public class Permissions {
 

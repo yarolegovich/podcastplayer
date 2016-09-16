@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 
+import com.devchallenge.podcastplayer.App;
 import com.devchallenge.podcastplayer.data.Cache;
 import com.devchallenge.podcastplayer.data.Podcasts;
 import com.devchallenge.podcastplayer.data.model.Podcast;
@@ -17,7 +18,7 @@ import rx.Observable;
 import rx.subjects.PublishSubject;
 
 /**
- * Created by yarolegovich on 13.09.2016.
+ * Created by MrDeveloper on 13.09.2016.
  */
 public class Player {
 
@@ -28,11 +29,10 @@ public class Player {
     private static Player instance;
 
     public static Player getInstance() {
+        if (instance == null) {
+            instance = new Player(App.getInstance());
+        }
         return instance;
-    }
-
-    public static void init(Context context) {
-        instance = new Player(context);
     }
 
     private Context context;

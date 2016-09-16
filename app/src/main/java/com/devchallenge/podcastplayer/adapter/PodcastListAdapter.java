@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * Created by yarolegovich on 13.09.2016.
+ * Created by MrDeveloper on 13.09.2016.
  */
 public class PodcastListAdapter extends RecyclerView.Adapter<PodcastListAdapter.ViewHolder> {
 
@@ -102,6 +102,14 @@ public class PodcastListAdapter extends RecyclerView.Adapter<PodcastListAdapter.
             int index = findIndex(podcast);
             if (index >= 0) {
                 notifyItemChanged(index);
+            }
+        }
+    }
+
+    public void updateItems(Object[] podcasts) {
+        for (Object podcast : podcasts) {
+            if (podcast instanceof Podcast) {
+                updateItem((Podcast) podcast);
             }
         }
     }

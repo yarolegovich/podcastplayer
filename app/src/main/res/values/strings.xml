@@ -5,9 +5,31 @@
     <string name="download">Download</string>
     <string name="summary">Summary</string>
     <string name="widget_no_playback">Tap to select podcast</string>
-    <string name="msg_podcast_already_cached">Podcast is already cached</string>
     <string name="in_cache">In cache</string>
+    <string name="cache">Cache</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+
     <string name="nothing_to_show">Nothing to show…</string>
-    <string name="no_internet">Check your internet connection</string>
+    <string name="cache_is_empty">Cache is empty…</string>
+
+    <!-- msg_ for message shown to user -->
+    <string name="msg_podcast_already_cached">Podcast is already cached</string>
+    <string name="msg_no_internet">Check your Internet connection</string>
+    <string name="msg_caching_in_progress">Caching is in progress. You can undo it via Download Manager…</string>
+
+    <!-- d_ fo dialog -->
+    <string name="d_title_remove_from_cache">Confirm action</string>
+    <string name="d_msg_remove_from_cache">This will permanently delete the file, are you sure?</string>
+
+    <!-- cd_ for contentDescription -->
     <string name="cd_player_unavailable">Player unavailable, no podcasts found</string>
+    <string name="cd_delete_cached_podcast">Delete cached podcast</string>
+    <string name="cd_toggle_playback_state">Toggle playback state</string>
+    <string name="cd_switch_to_the_previous">Switch to the previous podcast</string>
+    <string name="cd_switch_to_the_next">Switch to the next podcast</string>
+    <string name="cd_download_podcast">Download this podcast</string>
+    <string name="cd_stop_playback">Stop playback</string>
+
+    <string name="time_passed_total" translatable="false">%1$s/%2$s</string>
 </resources>

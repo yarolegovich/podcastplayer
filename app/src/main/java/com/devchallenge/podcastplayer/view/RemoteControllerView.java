@@ -16,12 +16,13 @@ import com.devchallenge.podcastplayer.data.model.Podcast;
 import static com.devchallenge.podcastplayer.audio.BackgroundAudioService.*;
 
 /**
- * Created by yarolegovich on 14.09.2016.
+ * Created by MrDeveloper on 14.09.2016.
  */
 public class RemoteControllerView {
 
     private static final int PI_MAIN_ACTIVITY = 7587;
 
+    @SuppressWarnings("ConstantConditions")
     public static RemoteViews create(Context c) {
         PlayerState state = Player.getInstance().getState();
         Podcast currentPodcast = state.getCurrentPodcast();

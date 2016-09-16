@@ -12,7 +12,7 @@ import rx.Observable;
 
 
 /**
- * Created by yarolegovich on 13.09.2016.
+ * Created by MrDeveloper on 13.09.2016.
  */
 public class NetworkManager {
 
