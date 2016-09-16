@@ -41,7 +41,9 @@ public class WidgetManager extends AppWidgetProvider {
             AppWidgetTarget target = new AppWidgetTarget(context, views,
                     R.id.rc_podcast_image,
                     appWidgetIds);
-            Glide.with(context).load(currentPodcast.getImageUrl()).asBitmap().into(target);
+            Glide.with(context)
+                    .load(currentPodcast.getImageUrl())
+                    .asBitmap().into(target);
         } else {
             views = new RemoteViews(context.getPackageName(), R.layout.widget_no_playback);
             views.setOnClickPendingIntent(

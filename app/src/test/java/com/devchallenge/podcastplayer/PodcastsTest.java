@@ -27,7 +27,6 @@ public class PodcastsTest {
 
     private Podcasts podcasts;
     private List<Podcast> podcastList;
-
     private Cache cache;
 
     @Before
@@ -62,7 +61,7 @@ public class PodcastsTest {
     }
 
     @Test
-    public void previousReturnsPreviosInTheListAndIsCircular() {
+    public void previousReturnsPreviousInTheListAndIsCircular() {
         cache.savePodcastList(podcastList, Schedulers.immediate());
         assertEquals(podcastList.get(0), podcasts.previous(podcastList.get(1)));
         assertEquals(podcastList.get(podcastList.size() - 1), podcasts.previous(podcastList.get(0)));

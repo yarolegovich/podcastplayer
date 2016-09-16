@@ -64,8 +64,8 @@ public class PodcastRssParser {
                 }
                 if (parser.getName().equals(PODCAST)) {
                     Podcast podcast = extractPodcast(parser);
-                    //I don't know how often this happen, but one item in comes only with title and
-                    //description. Podcast 498.
+                    //I don't know how often this happens, but one item in rss comes only with title
+                    //and description (Podcast 498).
                     if (podcast.getAudio() != null) {
                         result.add(podcast);
                     }

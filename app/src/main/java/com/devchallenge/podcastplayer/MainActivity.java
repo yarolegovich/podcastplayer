@@ -25,7 +25,7 @@ import java.util.List;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 
-public class MainActivity extends AppCompatActivity implements NavigationManager  {
+public class MainActivity extends AppCompatActivity implements NavigationManager {
 
     private Subscription subscription;
 
@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements NavigationManager
         setSupportActionBar(toolbar);
 
         FragmentManager fm = getSupportFragmentManager();
+
         Fragment fragment = fm.findFragmentById(R.id.list_container);
         if (fragment == null) {
             fragment = new PodcastListFragment();
@@ -62,14 +63,16 @@ public class MainActivity extends AppCompatActivity implements NavigationManager
                     .replace(R.id.player_container, fragment)
                     .commit();
         } else {
-            if (podcast != null) {
-                startActivity(PlayerActivity.callingIntent(this, podcast));
-            }
+            startActivity(PlayerActivity.callingIntent(this, podcast));
         }
     }
 
     private void showPodcastPlayerFragment(List<Podcast> podcasts) {
-        openPodcastInPlayer(podcasts.get(0));
+        if (!podcasts.isEmpty()) {
+            openPodcastInPlayer(podcasts.get(0));
+        } else {
+            showNoPodcastFragment();
+        }
     }
 
     private void showNoPodcastFragment() {

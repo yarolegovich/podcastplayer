@@ -69,10 +69,10 @@ public class PodcastRssParserTest {
     }
 
     @Test
-    public void parserParserXmlWithMultipleItems() throws IOException, XmlPullParserException {
-        String xmlToParse = String.format(EXAMPLE_XML, EXAMPLE_ITEM + EXAMPLE_ITEM);
+    public void parserParsesXmlWithMultipleItems() throws IOException, XmlPullParserException {
+        String xmlToParse = String.format(EXAMPLE_XML, EXAMPLE_ITEM + EXAMPLE_ITEM + EXAMPLE_ITEM);
         List<Podcast> parsed = parser.parseRssInputStream(stringToInputStream(xmlToParse));
-        assertEquals(2, parsed.size());
+        assertEquals(3, parsed.size());
         for (Podcast podcast : parsed) {
             assertPodcastsEqual(podcastToCompareWith, podcast);
         }
@@ -87,7 +87,7 @@ public class PodcastRssParserTest {
 
     @Test(expected = XmlPullParserException.class)
     public void parserThrowsExceptionIfInvalidXml() throws IOException, XmlPullParserException {
-        String xmlToParse = "<rss><channel><im></channel></rss>";
+        String xmlToParse = "<rss><channel><item></channel></rss>";
         List<Podcast> parsed = parser.parseRssInputStream(stringToInputStream(xmlToParse));
         assertTrue(parsed.isEmpty());
     }

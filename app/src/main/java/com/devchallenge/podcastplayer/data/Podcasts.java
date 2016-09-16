@@ -7,6 +7,7 @@ import com.devchallenge.podcastplayer.App;
 import com.devchallenge.podcastplayer.data.model.Podcast;
 import com.devchallenge.podcastplayer.data.net.NetworkManager;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class Podcasts {
     private Cache cache;
 
     public Podcasts(Context context) {
-        this.podcasts = Collections.emptyList();
+        this.podcasts = new ArrayList<>();
         this.cache = new Cache(context);
     }
 
@@ -75,7 +76,9 @@ public class Podcasts {
     }
 
     private void checkIfPodcastsSet() {
-        setPodcasts(getPodcasts().toBlocking().first());
+        if (podcasts.isEmpty()) {
+            setPodcasts(getPodcasts().toBlocking().first());
+        }
     }
 
     private int findIndex(Podcast currentPodcast) {
